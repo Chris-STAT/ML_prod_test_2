@@ -2,12 +2,19 @@ FROM python:3.8
 
 WORKDIR /opt/ml/code
 
+# Install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install sagemaker-containers
 
+# Install SageMaker specific packages
+RUN pip install sagemaker-containers sagemaker-inference-toolkit
+
+# Copy inference code
 COPY inference.py .
-COPY train.py .
 
+# Set environment variables
 ENV SAGEMAKER_PROGRAM inference.py
-ENTRYPOINT ["python", "-m", "sagemaker_containers.serve"]
+ENV SAGEMAKER_SUBMIT_DIRECTORY /opt/ml/model/code
+
+# Use multi-model server as the entry point
+ENTRYPOINT ["python", "-m", "sagemaker_inference.serving"]
