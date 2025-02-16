@@ -3,8 +3,8 @@ FROM python:3.8
 WORKDIR /opt/ml/code
 
 # Install dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements-inference.txt .
+RUN pip install --no-cache-dir -r requirements-inference.txt
 
 # Install SageMaker specific packages
 RUN pip install sagemaker-containers sagemaker-inference-toolkit
