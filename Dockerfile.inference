@@ -4,11 +4,11 @@ WORKDIR /opt/ml/code
 
 # Install dependencies
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements-inference.txt
 
 # Install SageMaker specific packages
-#RUN pip install sagemaker-containers sagemaker-inference-toolkit
-RUN pip install sagemaker-containers
+RUN pip install sagemaker-containers sagemaker-inference-toolkit
+#RUN pip install sagemaker-containers
 
 
 # Copy inference code
