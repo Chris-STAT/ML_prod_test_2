@@ -5,10 +5,10 @@ WORKDIR /opt/ml/code
 # Install dependencies
 COPY requirements-inference.txt .
 RUN pip install --no-cache-dir -r requirements-inference.txt
-RUN pip3 install multi-model-server sagemaker-inference
+RUN pip install multi-model-server sagemaker-inference
 
-# Verify installation of sagemaker_inference
-# RUN python -c "import sagemaker_inference; print(sagemaker_inference.__version__)"
+# Verify installation of sagemaker_inference by importing a known function or class
+RUN python -c "from sagemaker_inference import model_fn"
 
 # Copy inference code
 COPY inference.py .
@@ -18,4 +18,4 @@ ENV SAGEMAKER_PROGRAM inference.py
 ENV SAGEMAKER_SUBMIT_DIRECTORY /opt/ml/model/code
 
 # Use multi-model server as the entry point
-ENTRYPOINT ["python", "-m", "sagemaker_inference.serving"]
+ENTRYPOINT ["torchserve", "--start", "--model-store", "/opt/ml/model/code", "--ncs"]
