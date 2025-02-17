@@ -5,6 +5,7 @@ WORKDIR /opt/ml/code
 # Install dependencies
 COPY requirements-inference.txt .
 RUN pip install --no-cache-dir -r requirements-inference.txt
+RUN pip3 install multi-model-server sagemaker-inference
 
 # Verify installation of sagemaker_inference
 RUN python -c "import sagemaker_inference; print(sagemaker_inference.__version__)"
