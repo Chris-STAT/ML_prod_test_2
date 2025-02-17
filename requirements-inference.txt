@@ -2,6 +2,6 @@ pandas==1.4.4
 numpy==1.21.0
 scikit-learn==1.0.2
 xgboost==1.5.1
-sagemaker-containers==2.8.6
-sagemaker-inference==1.1.0
-multi-model-server==0.11.0
+sagemaker-containers
+sagemaker-inference
+multi-model-server
