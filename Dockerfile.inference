@@ -19,6 +19,6 @@ ENV SAGEMAKER_SUBMIT_DIRECTORY /opt/ml/model/code
 
 # Use multi-model server as the entry point
 # ENTRYPOINT ["torchserve", "--start", "--model-store", "/opt/ml/model/code", "--ncs"]
-ENTRYPOINT ["python", "-m", "sagemaker_containers.serve"]
+ENTRYPOINT ["python", "-m", "inference.py"]
 
 
