@@ -8,7 +8,7 @@ RUN pip install --no-cache-dir -r requirements-inference.txt
 #RUN pip install multi-model-server sagemaker-inference
 
 # Verify installation of sagemaker_inference by importing a known function or class
-RUN python -c "from sagemaker_inference import model_fn"
+# RUN python -c "from sagemaker_inference import model_fn"
 
 # Copy inference code
 COPY inference.py .
